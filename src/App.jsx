@@ -1,47 +1,36 @@
+import { useState } from "react";
 import Heading from "./components/heading";
 import Taskbar from "./components/taskbar";
-import { useState } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import TaskItem from "./components/edittask";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
-  const [tasks, setTask] = useState([]);
 
   function addTask() {
     if (!input.trim()) return;
-
-    setTask([...tasks, { id: Date.now(), title: input, label: "" }]);
+    setTasks([...tasks, { id: Date.now(), title: input }]);
     setInput("");
   }
 
   function deleteTask(id) {
-    setTask(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter((task) => task.id !== id));
   }
+
+  function updateTask(id, newTitle) {
+    setTasks(tasks.map((task) => (task.id === id ? { ...task, title: newTitle } : task)));
+  }
+
   return (
     <main className="bg-zinc-950 min-h-screen flex justify-center items-center">
       <div className="flex flex-col justify-between w-full max-w-md min-h-175 bg-zinc-700 border rounded-xl">
         <div className="flex-1 p-5">
           <Heading />
+          {tasks.map((task) => (
+            <TaskItem key={task.id} task={task} onUpdate={updateTask} onDelete={deleteTask} />
+          ))}
         </div>
-        {tasks.map((task) => (
-          <div>
-            <p
-              key={task.id}
-              className={`flex justify-between text-white text-sm mt-2 p-2 pl-6  border-b border-zinc-500 mx-5 `}
-            >
-              {task.title}{" "}
-              <div className="flex gap-2">
-                <span>
-                  <FaRegEdit />
-                </span>
-                <span onClick={() => deleteTask(task.id)} className="cursor-pointer">
-                  <MdDeleteOutline />
-                </span>
-              </div>
-            </p>
-          </div>
-        ))}
+
         <div className="border-t border-zinc-500"></div>
 
         <div className="p-5">
