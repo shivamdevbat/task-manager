@@ -24,10 +24,10 @@ export default function TaskItem({ task, onUpdate, onDelete }) {
           autoFocus
         />
       ) : (
-        <p className="flex-1">{task.title}</p>
+        <p className="flex-1 wrap-break-word">{task.title}</p>
       )}
 
-      <div className="flex gap-2 ml-2">
+      <div className="flex gap-2 ml-2 shrink-0">
         <span onClick={() => setIsEditing(true)} className="cursor-pointer hover:text-emerald-400">
           <FaRegEdit />
         </span>
