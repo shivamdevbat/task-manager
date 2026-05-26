@@ -26,11 +26,10 @@ function App() {
       <div className="flex flex-col justify-between w-full max-w-md min-h-175 bg-zinc-700 border rounded-xl">
         <div className="flex-1 p-5">
           <Heading />
-          {tasks.map((task) => (
-            <TaskItem key={task.id} task={task} onUpdate={updateTask} onDelete={deleteTask} />
-          ))}
         </div>
-
+        {tasks.map((task) => (
+          <TaskItem key={task.id} task={task} onUpdate={updateTask} onDelete={deleteTask} />
+        ))}
         <div className="border-t border-zinc-500"></div>
 
         <div className="p-5">
