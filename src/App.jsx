@@ -4,7 +4,7 @@ import Taskbar from "./components/taskbar";
 function App() {
   return (
     <main className="bg-zinc-950 min-h-screen flex justify-center items-center">
-      <div className="flex flex-col justify-between min-h-80 w-100 h-100 bg-zinc-800 border rounded-xl">
+      <div className="flex flex-col justify-between w-full max-w-md min-h-175 bg-zinc-700 border rounded-xl">
         <div className="flex-1 p-5">
           <Heading />
         </div>
